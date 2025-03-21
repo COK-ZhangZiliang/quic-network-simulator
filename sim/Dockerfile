@@ -3,11 +3,6 @@ FROM ubuntu:24.04 AS builder
 ARG TARGETARCH
 RUN echo "TARGETARCH : $TARGETARCH"
 
-# 修改镜像源
-RUN sed -i s:/archive.ubuntu.com:/mirrors.tuna.tsinghua.edu.cn/ubuntu:g /etc/apt/sources.list
-RUN cat /etc/apt/sources.list
-RUN apt-get clean
-
 RUN apt-get update && \
   DEBIAN_FRONTEND=noninteractive apt-get install -y \
   python3 build-essential cmake ninja-build libboost-dev libgsl-dev libxml2-dev \
